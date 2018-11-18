@@ -77,4 +77,19 @@ GetMonitorIndexFromWindow(windowHandle) {
     return %monitorIndex%
 }
 
+; TRIGGERS
+; TileActiveWindow(
+;   number of columns,
+;   starting column,
+;   ending column,
+;   number of rows,
+;   starting row,
+;   ending row
+; )
+; FULL HEIGHT COLUMNS
+#1::TileActiveWindow(3,0,1,1,0,1)
+#2::TileActiveWindow(3,1,2,1,0,1)
+#3::TileActiveWindow(3,2,3,1,0,1)
+#4::TileActiveWindow(3,0,2,1,0,1)
+#5::TileActiveWindow(3,1,3,1,0,1)
 
