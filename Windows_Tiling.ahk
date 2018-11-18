@@ -11,7 +11,19 @@ TileActiveWindow(columnTotal, columnStart, columnEnd, rowTotal, rowStart, rowEnd
     ; Determine scope
     availableWidth := (MonitorWorkAreaRight - MonitorWorkAreaLeft)
     availableHeight := (MonitorWorkAreaBottom - MonitorWorkAreaTop)
+    oneColumnWidth := availableWidth / columnTotal
+    oneRowHeight := availableHeight / rowTotal
 
+    oneColumnWidth := Round(oneColumnWidth)
+    oneRowHeight := Round(oneRowHeight)
+
+    adj := 8 ; Adjust for spacing (not sure why this occurs)
+    ; Determine X info
+    posX := ( oneColumnWidth * columnStart )
+    endPosX := ( oneColumnWidth * columnEnd )
+    width := ( endPosX - posX )
+    posX := ( posX - adj )          ; Adjust for spacing (not sure why this occurs)
+    width := ( width + ( adj * 2) ) ; Adjust for spacing (not sure why this occurs)
 
 Debugging MsgBox to display numbers
     message_title=Dimension_Info
@@ -21,6 +33,11 @@ message_title Width
 MonitorWorkAreaRight = %MonitorWorkAreaRight%
 MonitorWorkAreaLeft    = %MonitorWorkAreaLeft%
 availableWidth                = %availableWidth%
+
+message_title Height
+MonitorWorkAreaBottom = %MonitorWorkAreaBottom%
+MonitorWorkAreaTop        = %MonitorWorkAreaTop%
+availableHeight                   = %availableHeight%
 )
 MsgBox, , %message_title%, %message_info%
 
