@@ -3,8 +3,30 @@
  * Flexible window tiling in Windows
  */
 
+TileActiveWindow(columnTotal, columnStart, columnEnd, rowTotal, rowStart, rowEnd) {
+    WinGet activeWin, ID, A
+    activeMon := GetMonitorIndexFromWindow(activeWin)
+    SysGet, MonitorWorkArea, MonitorWorkArea, %activeMon%
+
+    ; Determine scope
+    availableWidth := (MonitorWorkAreaRight - MonitorWorkAreaLeft)
+    availableHeight := (MonitorWorkAreaBottom - MonitorWorkAreaTop)
 
 
+Debugging MsgBox to display numbers
+    message_title=Dimension_Info
+    message_info=
+(
+message_title Width
+MonitorWorkAreaRight = %MonitorWorkAreaRight%
+MonitorWorkAreaLeft    = %MonitorWorkAreaLeft%
+availableWidth                = %availableWidth%
+)
+MsgBox, , %message_title%, %message_info%
+
+    ; Move the window
+    ; WinMove,A,,%posX%,%posY%,%width%,%height%
+}
 
 /**
  * GetMonitorIndexFromWindow retrieves the HWND (unique ID) of a given window.
@@ -47,3 +69,5 @@ GetMonitorIndexFromWindow(windowHandle) {
 
     return %monitorIndex%
 }
+
+
